@@ -23,8 +23,8 @@ class PostData extends AsyncTask<String, Void, PostData> {
 	public String sender;
 	public String message;
 
-    protected PostData doInBackground(String... url) {
-                      
+	protected PostData doInBackground(String... url) {
+                            
     	// Create a new HttpClient and Post Header
     	HttpClient httpclient = new DefaultHttpClient();
     	httpclient.getParams().setParameter("http.protocol.version", HttpVersion.HTTP_1_1);

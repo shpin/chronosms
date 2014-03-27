@@ -3,12 +3,12 @@ package ru.shpin.chronosms;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Toast;
-import java.net.URLEncoder;
 
 public class IncomingSms extends BroadcastReceiver {
         
@@ -43,11 +43,15 @@ public class IncomingSms extends BroadcastReceiver {
                                      "senderNum: "+ senderNum + ", message: " + message, duration);
                         toast.show();
                         
-                       // send data to inet
-                       PostData do_post = new PostData();
-                       do_post.sender = senderNum;
-                       do_post.message = message;
-                       do_post.execute();
+                        // turn wifi on
+                    	WifiManager wifi = (WifiManager)context.getSystemService(Context.WIFI_SERVICE); 
+                    	wifi.setWifiEnabled(true);
+                        
+                        // send data to inet
+                        PostData do_post = new PostData();
+                        do_post.sender = senderNum;
+                        do_post.message = message;
+                        do_post.execute();
                     		
                         
                     } // end for loop
